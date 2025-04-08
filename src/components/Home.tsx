@@ -1,6 +1,12 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 
 export function Home() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isvisible, setisvisible] = useState(false);
+
+
 
     return (
         <>
@@ -9,8 +15,8 @@ export function Home() {
             <a href="/" aria-current="page" className="nav_brand w-inline-block w--current">
                 <div className="w-embed">
                 <svg width="100%" height="100%" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1" y="1" width="50" height="50" rx="25" stroke="currentColor" stroke-width="2"/>
-                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="currentColor" font-size="16" font-family="Arial, sans-serif" font-weight="bold">
+                    <rect x="1" y="1" width="50" height="50" rx="25" stroke="currentColor" strokeWidth="2"/>
+                    <text x="50%" y="55%" dominantBaseline  ="middle" textAnchor="middle" fill="currentColor" fontSize="16" fontFamily="Arial, sans-serif" fontWeight="bold">
                         VG
                     </text>
                 </svg>
@@ -57,7 +63,7 @@ export function Home() {
             </div>
         </div>
 
-        <section className="section hero">
+        <section className=" mt-[200px] section hero">
             <div className="hero-wrap">
                 <div className="container hero">
                     <div  className="hero-visual_wall">
@@ -82,47 +88,27 @@ export function Home() {
                     <div  className="hero-content_wall">
                         <div  className="hero-content_part _2">
                             <div className="hero-content">
-                                <div className="hero-content_reveal-back">
-                                    <div className="hero-content_back-button">
-                                        <div className="hero-content_back-button_box">
-                                            <div className="hero-content_back-button_arrow-box">
-                                                <div className="hero-content_back-button_arrow w-embed">
-                                                    <svg width="100%" height="100%" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15519 9.84618C0.687855 9.37885 0.687855 8.62116 1.15519 8.15383L8.77078 0.538242C9.23811 0.0709115 9.9958 0.0709115 10.4631 0.538242C10.9305 1.00557 10.9305 1.76327 10.4631 2.2306L4.89039 7.80333L34.0014 7.80334V10.1967L4.89039 10.1967L10.4631 15.7694C10.9305 16.2368 10.9305 16.9944 10.4631 17.4618C9.9958 17.9291 9.2381 17.9291 8.77077 17.4618L1.15519 9.84618Z" fill="currentColor"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div className="hero-content_back-button_arrow-box">
-                                                <div className="hero-content_back-button_arrow w-embed">
-                                                    <svg width="100%" height="100%" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15519 9.84618C0.687855 9.37885 0.687855 8.62116 1.15519 8.15383L8.77078 0.538242C9.23811 0.0709115 9.9958 0.0709115 10.4631 0.538242C10.9305 1.00557 10.9305 1.76327 10.4631 2.2306L4.89039 7.80333L34.0014 7.80334V10.1967L4.89039 10.1967L10.4631 15.7694C10.9305 16.2368 10.9305 16.9944 10.4631 17.4618C9.9958 17.9291 9.2381 17.9291 8.77077 17.4618L1.15519 9.84618Z" fill="currentColor"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div className="hero-content_headline">
                                     <div className="h5 opacity_30">HI, I’M Vishal, I develop</div>
-                                    <h1 className="h2 hero-content_h margin-bot margin-16 no-actions">
+                                    <h1 className="h2 hero-content_h  m-4 pointer-events-none select-none">
                                         <strong>The Perfect Website</strong>
                                     </h1>
                                     <div className="hero_tm">
-                                        <div tm-reveal="1" className="tm_block">
+                                        <div tm-reveal="1" className="tm_block ">
                                             <div className="tm">
                                                 <div className="tm_label">VG</div>
-                                                <div className="tm_dot-bg"></div>
+                                                <div className=" hover:tm_dot-bg"></div>
                                                 <div className="tm_dot-box solid">
-                                                    <div className="tm_dot _1"></div>
-                                                    <div className="tm_dot _2 solid"></div>
-                                                    <div className="tm_dot _3"></div>
+                                                    <Dot />
+                                                    <Dot />
+                                                    <Dot />
                                                 </div>
                                                 <div className="tm_dot-box stroke">
-                                                    <div className="tm_dot _1 stroke"></div>
-                                                    <div className="tm_dot _2 stroke"></div>
+                                                    <Dot />
+                                                    <Dot />
                                                 </div>
                                             </div>
-                                            <div className="hero_click-me">
+                                            <div className="hero_click-me ">
                                                 <div className="hero_click-me_arrow w-embed">
                                                     <svg width="100%" height="100%" viewBox="0 0 54 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M9.19964 10.2246C10.4533 10.1371 11.0633 10.9076 11.8652 11.2608C12.412 11.507 13.0131 11.7428 13.5861 11.7677C14.8148 11.8192 15.6244 10.3675 14.9578 9.37431C14.6145 8.88179 14.1766 8.41592 13.6914 8.06288C10.6359 5.85097 7.56036 3.64723 4.45286 1.47983C3.88851 1.07699 3.18226 0.813607 2.4889 0.638604C1.43766 0.363097 0.400658 1.20504 0.375987 2.25636C0.368605 2.55186 0.403745 2.8652 0.4448 3.16445C0.884957 6.08642 1.29085 9.0106 1.78537 11.9222C1.90048 12.6009 2.15498 13.305 2.51946 13.9059C3.21775 15.0617 4.45362 15.0166 5.1932 13.8508C5.39793 13.522 5.51528 13.1234 5.7699 12.517C6.24796 12.9665 6.5974 13.2459 6.89714 13.604C8.81362 15.8686 10.7159 18.1271 12.6123 20.3998C16.8453 25.4451 22.2873 28.8416 28.2169 31.5137C30.0698 32.3415 32.086 32.9392 34.0872 33.2155C37.2212 33.6522 40.3933 33.8394 43.5442 33.9183C47.0945 33.9989 50.0839 32.517 52.617 30.0969C53.0368 29.6926 53.4332 29.1457 53.5814 28.5941C53.6846 28.1896 53.5151 27.5212 53.2141 27.2455C52.9131 26.9698 52.2185 26.8772 51.8308 27.0462C51.1938 27.293 50.6214 27.7826 50.0586 28.2098C47.753 29.9292 45.1908 30.7113 42.3129 30.4983C39.3583 30.2696 36.3798 30.2963 33.4966 29.5004C27.1396 27.727 21.6939 24.3789 17.0955 19.7275C14.5897 17.199 12.4057 14.341 10.0797 11.6226C9.75749 11.2384 9.54762 10.7854 9.19964 10.2246Z" fill="currentColor"/>
@@ -143,141 +129,10 @@ export function Home() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="hero-content_subheadline-row">
-                                    <div className="h5 hero-content_subheadline base">for your business</div>
-                                    <div className="h5 hero-content_subheadline reveal">By Vishal Gaikwad</div>
-                                </div>
-                                <div className="hero-content_reveal">
-                                    <div className="tm-reveal">
-                                        <div className="tm_label">VG</div>
-                                        <div className="tm_dot-box stroke">
-                                            <div className="tm_dot _1 stroke"></div>
-                                        </div>
-                                    </div>
-                                    <p className="hero-content_reveal-text">I strive to elevate your website to a level that is easily editable, always fully functional, and pixel-perfect according to your needs.</p>
-                                </div>
+                               
                             </div>
                         </div>
-                        <div className="hero-content_part _3">
-                            <div className="hero-content_me-respo">
-                                <img src="https://cdn.prod.website-files.com/62c6f0db8f3bd1cd89369e11/63cc37e515116fb5dd5d5733_real-me.jpg" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 900px, 100vw" srcSet="https://assets-global.website-files.com/62c6f0db8f3bd1cd89369e11/63cc37e515116fb5dd5d5733_real-me-p-500.jpg 500w, https://assets-global.website-files.com/62c6f0db8f3bd1cd89369e11/63cc37e515116fb5dd5d5733_real-me-p-800.jpg 800w, https://assets-global.website-files.com/62c6f0db8f3bd1cd89369e11/63cc37e515116fb5dd5d5733_real-me-p-1080.jpg 1080w, https://assets-global.website-files.com/62c6f0db8f3bd1cd89369e11/63cc37e515116fb5dd5d5733_real-me.jpg 1400w" alt="" className="hero-content_me-respo-img"/>
-                            </div>
-                            <div className="hero-content">
-                                <div className="hero-content_reveal-back">
-                                    <div className="hero-content_back-button">
-                                        <div className="hero-content_back-button_box">
-                                            <div className="hero-content_back-button_arrow-box">
-                                                <div className="hero-content_back-button_arrow w-embed">
-                                                    <svg width="100%" height="100%" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15519 9.84618C0.687855 9.37885 0.687855 8.62116 1.15519 8.15383L8.77078 0.538242C9.23811 0.0709115 9.9958 0.0709115 10.4631 0.538242C10.9305 1.00557 10.9305 1.76327 10.4631 2.2306L4.89039 7.80333L34.0014 7.80334V10.1967L4.89039 10.1967L10.4631 15.7694C10.9305 16.2368 10.9305 16.9944 10.4631 17.4618C9.9958 17.9291 9.2381 17.9291 8.77077 17.4618L1.15519 9.84618Z" fill="currentColor"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div className="hero-content_back-button_arrow-box">
-                                                <div className="hero-content_back-button_arrow w-embed">
-                                                    <svg width="100%" height="100%" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15519 9.84618C0.687855 9.37885 0.687855 8.62116 1.15519 8.15383L8.77078 0.538242C9.23811 0.0709115 9.9958 0.0709115 10.4631 0.538242C10.9305 1.00557 10.9305 1.76327 10.4631 2.2306L4.89039 7.80333L34.0014 7.80334V10.1967L4.89039 10.1967L10.4631 15.7694C10.9305 16.2368 10.9305 16.9944 10.4631 17.4618C9.9958 17.9291 9.2381 17.9291 8.77077 17.4618L1.15519 9.84618Z" fill="currentColor"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="info-label">Back</div>
-                                    </div>
-                                </div>
-                                <div className="h5">I’m a certified</div>
-                                <div className="hero-content_headline">
-                                    <h2 className="h2 hero-content_h margin-bot margin-16 no-actions">Webflow Partner</h2>
-                                    <div tm-reveal="4" className="tm_block _4">
-                                        <div className="tm">
-                                            <div className="tm_label">VG</div>
-                                            <div className="tm_dot-bg"></div>
-                                            <div className="tm_dot-box solid">
-                                                <div className="tm_dot _1"></div>
-                                                <div className="tm_dot _2 solid"></div>
-                                                <div className="tm_dot _3"></div>
-                                            </div>
-                                            <div className="tm_dot-box stroke">
-                                                <div className="tm_dot _1 stroke"></div>
-                                                <div className="tm_dot _2 stroke"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="hero-content_subheadline-row">
-                                    <div className="h5 hero-content_subheadline base">by day</div>
-                                    <div className="h5 hero-content_subheadline reveal">By Vishal Gaikwad</div>
-                                </div>
-                                <div className="hero-content_reveal">
-                                    <div className="tm-reveal">
-                                        <div className="tm_label">VG</div>
-                                        <div className="tm_dot-box stroke">
-                                            <div className="tm_dot _1 stroke"></div>
-                                        </div>
-                                    </div>
-                                    <p className="hero-content_reveal-text">As your savior, I &#x27;m happy to show you what it &#x27;s like to have a website that serves you and does the job it &#x27;s supposed to.</p>
-                                </div>
-                            </div>
-                            <p className="hero_p">Every website deserves a unique solution, whether it &#x27;s advanced custom functionalities, a need for adequately set design systems for the simple creation of landing pages, or special custom animated projects.</p>
-                        </div>
-                        <div id="tm-reveal_1" className="hero-content_part _1">
-                            <div className="hero-content">
-                                <div className="hero-content_reveal-back">
-                                    <div className="hero-content_back-button">
-                                        <div className="hero-content_back-button_box">
-                                            <div className="hero-content_back-button_arrow-box">
-                                                <div className="hero-content_back-button_arrow w-embed">
-                                                    <svg width="100%" height="100%" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15519 9.84618C0.687855 9.37885 0.687855 8.62116 1.15519 8.15383L8.77078 0.538242C9.23811 0.0709115 9.9958 0.0709115 10.4631 0.538242C10.9305 1.00557 10.9305 1.76327 10.4631 2.2306L4.89039 7.80333L34.0014 7.80334V10.1967L4.89039 10.1967L10.4631 15.7694C10.9305 16.2368 10.9305 16.9944 10.4631 17.4618C9.9958 17.9291 9.2381 17.9291 8.77077 17.4618L1.15519 9.84618Z" fill="currentColor"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div className="hero-content_back-button_arrow-box">
-                                                <div className="hero-content_back-button_arrow w-embed">
-                                                    <svg width="100%" height="100%" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15519 9.84618C0.687855 9.37885 0.687855 8.62116 1.15519 8.15383L8.77078 0.538242C9.23811 0.0709115 9.9958 0.0709115 10.4631 0.538242C10.9305 1.00557 10.9305 1.76327 10.4631 2.2306L4.89039 7.80333L34.0014 7.80334V10.1967L4.89039 10.1967L10.4631 15.7694C10.9305 16.2368 10.9305 16.9944 10.4631 17.4618C9.9958 17.9291 9.2381 17.9291 8.77077 17.4618L1.15519 9.84618Z" fill="currentColor"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="info-label">Back</div>
-                                    </div>
-                                </div>
-                                <div className="h5">and your</div>
-                                <div className="hero-content_headline">
-                                    <h2 className="h2 hero-content_h margin-bot margin-16 no-actions">
-                                        Website <br/>Saviour
-                                    </h2>
-                                    <div tm-reveal="2" className="tm_block _2">
-                                        <div className="tm">
-                                            <div className="tm_label">VG</div>
-                                            <div className="tm_dot-bg"></div>
-                                            <div className="tm_dot-box solid">
-                                                <div className="tm_dot _1"></div>
-                                                <div className="tm_dot _2 solid"></div>
-                                                <div className="tm_dot _3"></div>
-                                            </div>
-                                            <div className="tm_dot-box stroke">
-                                                <div className="tm_dot _1 stroke"></div>
-                                                <div className="tm_dot _2 stroke"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="hero-content_subheadline-row">
-                                    <div className="h5 hero-content_subheadline base">by night</div>
-                                    <div className="h5 hero-content_subheadline reveal">By Vishal Gaikwad</div>
-                                </div>
-                                <div className="hero-content_reveal">
-                                    <div className="tm-reveal">
-                                        <div className="tm_label">VG</div>
-                                        <div className="tm_dot-box stroke">
-                                            <div className="tm_dot _1 stroke"></div>
-                                        </div>
-                                    </div>
-                                    <p className="hero-content_reveal-text">As an official Webflow Partner, I am entirely focusing on building sites in Webflow with systematic build via reusable components in mind, recently enjoying advanced functionalities and custom-made animations.</p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -285,3 +140,21 @@ export function Home() {
         </>
     )
 }
+
+
+
+
+
+
+
+
+const Dot = ({ className }: { className?: string }) => (
+  <motion.div
+    className={`tm_dot ${className}`}
+    variants={{
+      initial: { scale: 1, backgroundColor: "transparent" },
+      hover: { scale: 1.4, backgroundColor: "#ff0000" }, // red
+    }}
+    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+  />
+);
