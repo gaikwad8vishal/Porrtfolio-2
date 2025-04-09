@@ -1,10 +1,77 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+
 
 
 export function Home() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isvisible, setisvisible] = useState(false);
+
+    const tmRef = useRef<HTMLDivElement>(null);
+
+
+    useEffect(() => {
+        const tm = tmRef.current;
+        const dots = tm?.querySelectorAll(".tm_dot");
+        const label = tm?.querySelector(".tm_label") as HTMLElement;
+      
+        if (!tm || !dots || !label) return;
+      
+        // Hover In
+        const hoverIn = () => {
+          const tl = gsap.timeline({ 
+            defaults: { 
+                ease: "power2.out" 
+            } 
+        });
+      
+          tl.to(dots, {
+            backgroundColor: "#ff3c3c",
+            scale: 1,
+            stagger: 0.1,
+            duration: 0.2,
+          }, 0)
+      
+          .to(dots, {
+            boxShadow: "0 0 0 5px rgba(255, 60, 60, 0.4), 0 0 0px 10px rgba(255, 60, 60, 0.2)",
+            duration: 0.4,
+          }, 0)
+      
+          .to(label, {
+            color: "#000000",
+            duration: 0.5,
+          }, 0);
+        };
+      
+        // Hover Out
+        const hoverOut = () => {
+          const tl = gsap.timeline({ defaults: { ease: "power2.inOut" } });
+      
+          tl.to(dots, {
+            backgroundColor: "transparent",
+            scale: 1,
+            boxShadow: "none",
+            stagger: -0.1,
+            duration: 0.4,
+          }, 0)
+      
+          .to(label, {
+            color: "#ff3c3c",
+            duration: 0.3,
+          }, 0);
+        };
+      
+        tm.addEventListener("mouseenter", hoverIn);
+        tm.addEventListener("mouseleave", hoverOut);
+      
+        return () => {
+          tm.removeEventListener("mouseenter", hoverIn);
+          tm.removeEventListener("mouseleave", hoverOut);
+        };
+      }, []);
+
+
+
+      
+      
 
 
 
@@ -89,24 +156,23 @@ export function Home() {
                         <div  className="hero-content_part _2">
                             <div className="hero-content">
                                 <div className="hero-content_headline">
-                                    <div className="h5 opacity_30">HI, I’M Vishal, I develop</div>
-                                    <h1 className="h2 hero-content_h  m-4 pointer-events-none select-none">
+                                    <div className="h5 opacity_30">HI, I'M Vishal, I develop</div>
+                                    <h1 className="h2 hero-content_h  ">
                                         <strong>The Perfect Website</strong>
                                     </h1>
-                                    <div className="hero_tm">
+                                    <div className=" hero_tm  ">
                                         <div tm-reveal="1" className="tm_block ">
-                                            <div className="tm">
-                                                <div className="tm_label">VG</div>
-                                                <div className=" hover:tm_dot-bg"></div>
-                                                <div className="tm_dot-box solid">
-                                                    <Dot />
-                                                    <Dot />
-                                                    <Dot />
-                                                </div>
-                                                <div className="tm_dot-box stroke">
-                                                    <Dot />
-                                                    <Dot />
-                                                </div>
+                                        <div className="tm" ref={tmRef}>
+                                            <div className="tm_label">VG</div>
+                                            <div className="tm_dot-box solid">
+                                                <div className="tm_dot _1"></div>
+                                                <div className="tm_dot _2"></div>
+                                                <div className="tm_dot _3"></div>
+                                            </div>
+                                            <div className="tm_dot-box stroke">
+                                                <div className="tm_dot _1 stroke"></div>
+                                                <div className="tm_dot _2 stroke"></div>
+                                            </div>
                                             </div>
                                             <div className="hero_click-me ">
                                                 <div className="hero_click-me_arrow w-embed">
@@ -144,17 +210,3 @@ export function Home() {
 
 
 
-
-
-
-
-const Dot = ({ className }: { className?: string }) => (
-  <motion.div
-    className={`tm_dot ${className}`}
-    variants={{
-      initial: { scale: 1, backgroundColor: "transparent" },
-      hover: { scale: 1.4, backgroundColor: "#ff0000" }, // red
-    }}
-    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-  />
-);
