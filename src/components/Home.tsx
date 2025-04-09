@@ -1,19 +1,8 @@
 import { useEffect } from "react";
 
-import logicData from "../logic.json";
 
 
 export function Home() {
-
-    const actionItems = logicData.actionLists.a.actionItemGroups[0].actionItems;
-    const config = actionItems[0].config;
-
-    const targetElements = document.querySelectorAll(config.target.selector);
-
-    targetElements.forEach((el) => {
-    (el as HTMLElement).style.transition = `color ${config.duration}ms`;
-    (el as HTMLElement).style.color = `rgba(${config.rValue}, ${config.gValue}, ${config.bValue}, ${config.aValue})`;
-    });
 
       
       
@@ -107,7 +96,7 @@ export function Home() {
                                     </h1>
                                     <div className="hero_tm">
                                         <div tm-reveal="1" data-w-id="84974f5a-3d81-e442-532d-7913cea4b22e" className="tm_block">
-                                            <div className="tm">
+                                            <div className="tm  ">
                                                 <div className="tm_label">VG</div>
                                                 <div className="tm_dot-bg"></div>
                                                 <div className="tm_dot-box solid">
