@@ -7059,3 +7059,33 @@ figcaption {
     opacity: 0;
   }
   
+
+
+
+  .hero_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vmax;
+    height: 100vmax;
+    background: black;
+    border-radius: 50%;
+    transform: scale(0);
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+
+
+  .tm_hover-circle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #ff4d4d44; /* semi-transparent red */
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    z-index: 0;
+    transition: background-color 0.2s;
+  }
+  
