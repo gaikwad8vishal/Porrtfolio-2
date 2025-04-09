@@ -7044,3 +7044,18 @@ figcaption {
         line-height: 1.6
     }
 }
+
+
+.tm_circle {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #ff3c3c;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+  }
+  

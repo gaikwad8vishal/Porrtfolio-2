@@ -1,74 +1,19 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useEffect } from "react";
 
+import logicData from "../logic.json";
 
 
 export function Home() {
 
-    const tmRef = useRef<HTMLDivElement>(null);
+    const actionItems = logicData.actionLists.a.actionItemGroups[0].actionItems;
+    const config = actionItems[0].config;
 
+    const targetElements = document.querySelectorAll(config.target.selector);
 
-    useEffect(() => {
-        const tm = tmRef.current;
-        const dots = tm?.querySelectorAll(".tm_dot");
-        const label = tm?.querySelector(".tm_label") as HTMLElement;
-      
-        if (!tm || !dots || !label) return;
-      
-        // Hover In
-        const hoverIn = () => {
-          const tl = gsap.timeline({ 
-            defaults: { 
-                ease: "power2.out" 
-            } 
-        });
-      
-          tl.to(dots, {
-            backgroundColor: "#ff3c3c",
-            scale: 1,
-            stagger: 0.1,
-            duration: 0.2,
-          }, 0)
-      
-          .to(dots, {
-            boxShadow: "0 0 0 5px rgba(255, 60, 60, 0.4), 0 0 0px 10px rgba(255, 60, 60, 0.2)",
-            duration: 0.4,
-          }, 0)
-      
-          .to(label, {
-            color: "#000000",
-            duration: 0.5,
-          }, 0);
-        };
-      
-        // Hover Out
-        const hoverOut = () => {
-          const tl = gsap.timeline({ defaults: { ease: "power2.inOut" } });
-      
-          tl.to(dots, {
-            backgroundColor: "transparent",
-            scale: 1,
-            boxShadow: "none",
-            stagger: -0.1,
-            duration: 0.4,
-          }, 0)
-      
-          .to(label, {
-            color: "#ff3c3c",
-            duration: 0.3,
-          }, 0);
-        };
-      
-        tm.addEventListener("mouseenter", hoverIn);
-        tm.addEventListener("mouseleave", hoverOut);
-      
-        return () => {
-          tm.removeEventListener("mouseenter", hoverIn);
-          tm.removeEventListener("mouseleave", hoverOut);
-        };
-      }, []);
-
-
+    targetElements.forEach((el) => {
+    (el as HTMLElement).style.transition = `color ${config.duration}ms`;
+    (el as HTMLElement).style.color = `rgba(${config.rValue}, ${config.gValue}, ${config.bValue}, ${config.aValue})`;
+    });
 
       
       
@@ -155,32 +100,33 @@ export function Home() {
                     <div  className="hero-content_wall">
                         <div  className="hero-content_part _2">
                             <div className="hero-content">
-                                <div className="hero-content_headline">
+                            <div className="hero-content_headline">
                                     <div className="h5 opacity_30">HI, I'M Vishal, I develop</div>
-                                    <h1 className="h2 hero-content_h  ">
+                                    <h1 className="h2 hero-content_h margin-bot m-16 no-actions">
                                         <strong>The Perfect Website</strong>
                                     </h1>
-                                    <div className=" hero_tm  ">
-                                        <div tm-reveal="1" className="tm_block ">
-                                        <div className="tm" ref={tmRef}>
-                                            <div className="tm_label">VG</div>
-                                            <div className="tm_dot-box solid">
-                                                <div className="tm_dot _1"></div>
-                                                <div className="tm_dot _2"></div>
-                                                <div className="tm_dot _3"></div>
+                                    <div className="hero_tm">
+                                        <div tm-reveal="1" data-w-id="84974f5a-3d81-e442-532d-7913cea4b22e" className="tm_block">
+                                            <div className="tm">
+                                                <div className="tm_label">VG</div>
+                                                <div className="tm_dot-bg"></div>
+                                                <div className="tm_dot-box solid">
+                                                    <div className="tm_dot _1"></div>
+                                                    <div className="tm_dot _2 solid"></div>
+                                                    <div className="tm_dot _3"></div>
+                                                </div>
+                                                <div className="tm_dot-box stroke">
+                                                    <div className="tm_dot _1 stroke"></div>
+                                                    <div className="tm_dot _2 stroke"></div>
+                                                </div>
                                             </div>
-                                            <div className="tm_dot-box stroke">
-                                                <div className="tm_dot _1 stroke"></div>
-                                                <div className="tm_dot _2 stroke"></div>
-                                            </div>
-                                            </div>
-                                            <div className="hero_click-me ">
+                                            <div className="hero_click-me">
                                                 <div className="hero_click-me_arrow w-embed">
                                                     <svg width="100%" height="100%" viewBox="0 0 54 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M9.19964 10.2246C10.4533 10.1371 11.0633 10.9076 11.8652 11.2608C12.412 11.507 13.0131 11.7428 13.5861 11.7677C14.8148 11.8192 15.6244 10.3675 14.9578 9.37431C14.6145 8.88179 14.1766 8.41592 13.6914 8.06288C10.6359 5.85097 7.56036 3.64723 4.45286 1.47983C3.88851 1.07699 3.18226 0.813607 2.4889 0.638604C1.43766 0.363097 0.400658 1.20504 0.375987 2.25636C0.368605 2.55186 0.403745 2.8652 0.4448 3.16445C0.884957 6.08642 1.29085 9.0106 1.78537 11.9222C1.90048 12.6009 2.15498 13.305 2.51946 13.9059C3.21775 15.0617 4.45362 15.0166 5.1932 13.8508C5.39793 13.522 5.51528 13.1234 5.7699 12.517C6.24796 12.9665 6.5974 13.2459 6.89714 13.604C8.81362 15.8686 10.7159 18.1271 12.6123 20.3998C16.8453 25.4451 22.2873 28.8416 28.2169 31.5137C30.0698 32.3415 32.086 32.9392 34.0872 33.2155C37.2212 33.6522 40.3933 33.8394 43.5442 33.9183C47.0945 33.9989 50.0839 32.517 52.617 30.0969C53.0368 29.6926 53.4332 29.1457 53.5814 28.5941C53.6846 28.1896 53.5151 27.5212 53.2141 27.2455C52.9131 26.9698 52.2185 26.8772 51.8308 27.0462C51.1938 27.293 50.6214 27.7826 50.0586 28.2098C47.753 29.9292 45.1908 30.7113 42.3129 30.4983C39.3583 30.2696 36.3798 30.2963 33.4966 29.5004C27.1396 27.727 21.6939 24.3789 17.0955 19.7275C14.5897 17.199 12.4057 14.341 10.0797 11.6226C9.75749 11.2384 9.54762 10.7854 9.19964 10.2246Z" fill="currentColor"/>
                                                     </svg>
                                                 </div>
-                                                <div className="hero_click-me_text w-embed" >
+                                                <div className="hero_click-me_text w-embed">
                                                     <svg width="100%" height="100%" viewBox="0 0 103 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M12.2886 2.26379C12.8112 2.26379 13.3806 2.73045 13.9966 3.66379C14.6126 4.57845 14.9206 5.33445 14.9206 5.93179C14.9206 6.52912 14.7992 6.82779 14.5566 6.82779C14.4446 6.82779 14.2019 6.79045 13.8286 6.71579C13.4739 6.64112 13.1659 6.60379 12.9046 6.60379C11.9712 6.60379 10.8792 7.20112 9.62856 8.39579C8.3779 9.59045 7.30456 11.0185 6.40856 12.6798C5.53123 14.3411 5.09256 15.7785 5.09256 16.9918C5.09256 17.5891 5.1859 18.0278 5.37256 18.3078C5.55923 18.5691 5.89523 18.6998 6.38056 18.6998C7.66856 18.6998 8.97523 18.5038 10.3006 18.1118C11.6259 17.7198 12.7179 17.3278 13.5766 16.9358C14.4352 16.5251 14.9206 16.3198 15.0326 16.3198C15.1632 16.3198 15.2846 16.4318 15.3966 16.6558C15.5272 16.8611 15.5926 17.1131 15.5926 17.4118C15.5926 18.0465 15.0886 18.8025 14.0806 19.6798C13.0726 20.5385 11.8499 21.2758 10.4126 21.8918C8.9939 22.5078 7.7059 22.8158 6.54856 22.8158C5.39123 22.8158 4.16856 22.1158 2.88056 20.7158C1.61123 19.3158 0.976562 17.9811 0.976562 16.7118C0.976562 14.9385 1.5459 12.9225 2.68456 10.6638C3.82323 8.38645 5.28856 6.41712 7.08056 4.75579C8.89123 3.09445 10.6272 2.26379 12.2886 2.26379Z" fill="currentColor" stroke="currentColor"></path>
                                                         <path d="M21.3658 0.555786C21.8138 0.555786 22.3925 0.966453 23.1018 1.78779C23.8111 2.60912 24.1658 3.39312 24.1658 4.13979C24.1658 4.88645 24.0538 6.22112 23.8298 8.14379C23.6058 10.0478 23.3725 11.5691 23.1298 12.7078C21.5805 19.4651 20.4978 22.8438 19.8818 22.8438C19.4711 22.8438 18.9578 22.5171 18.3418 21.8638C17.7445 21.1918 17.4458 20.6411 17.4458 20.2118C17.4458 20.1745 17.6978 19.2038 18.2018 17.2998C18.7058 15.3958 19.2098 12.9505 19.7138 9.96379C20.2365 6.95845 20.4978 4.09312 20.4978 1.36779C20.4978 0.826453 20.7871 0.555786 21.3658 0.555786Z" fill="currentColor" stroke="currentColor"></path>
@@ -195,17 +141,31 @@ export function Home() {
                                         </div>
                                     </div>
                                 </div>
-                               
+                                <div className="hero-content_subheadline-row">
+                                    <div className="h5 hero-content_subheadline base">for your business</div>
+                                    <div className="h5 hero-content_subheadline reveal">By Vishal Gaikwad</div>
+                                </div>
+                                <div className="hero-content_reveal">
+                                    <div className="tm-reveal">
+                                        <div className="tm_label">VG</div>
+                                        <div className="tm_dot-box stroke">
+                                            <div className="tm_dot _1 stroke"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hero-content_reveal-text">I strive to elevate your website to a level that is easily editable, always fully functional, and pixel-perfect according to your needs.</p>
+                                </div>
                             </div>
+                            </div>
+                                
                         </div>
 
                     </div>
                 </div>
-            </div>
         </section>
         </>
     )
 }
+
 
 
 
